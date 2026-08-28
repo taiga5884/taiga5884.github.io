@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>小林 泰雅 | Taiga Kobayashi</title>
-<meta name="description" content="小林泰雅のポートフォリオ。東京科学大学 AC2研究室。DPU・HPCネットワーク・分散学習の通信圧縮の研究。">
+<title>Taiga Kobayashi</title>
+<meta name="description" content="Portfolio of Taiga Kobayashi. AC2 Laboratory, Institute of Science Tokyo. DPUs, HPC networking, and communication compression for distributed training.">
 <style>
 :root{
   --text:#1f2430; --sub:#5a6472; --accent:#1155cc; --line:#e4e8ee; --bg:#ffffff; --chip:#f2f5fa;
@@ -12,7 +12,7 @@
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);
   font-family:"Helvetica Neue",Arial,"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",Meiryo,sans-serif;
-  line-height:1.85;font-size:16px}
+  line-height:1.75;font-size:16px}
 .wrap{max-width:760px;margin:0 auto;padding:48px 24px 64px}
 a{color:var(--accent);text-decoration:none}
 a:hover{text-decoration:underline}
@@ -41,110 +41,109 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--line);color:v
 <body>
 <div class="wrap">
 
-<div class="lang"><a href="../">English</a></div>
+<div class="lang"><a href="ja/">日本語</a></div>
 
 <header>
-  <!-- 写真を使う場合: <img class="avatar" src="../assets/photo.jpg" alt="小林泰雅"> に差し替え -->
+  <!-- To use a photo: replace with <img class="avatar" src="assets/photo.jpg" alt="Taiga Kobayashi"> -->
   <div class="avatar">TK</div>
   <div>
-    <h1>小林 泰雅</h1>
-    <div class="en-name">Taiga Kobayashi</div>
+    <h1>Taiga Kobayashi</h1>
+    <div class="en-name">小林 泰雅</div>
     <div class="affil">
-      東京科学大学 情報理工学院 数理・計算科学系 修士課程<!-- 【要確認】学年 -->
-      ・<a href="https://www.ac2.scrc.iir.isct.ac.jp/" target="_blank" rel="noopener">Advanced Computing ACceleration (AC2) Laboratory</a>（指導教員：小林 諒平 准教授）
+      Master's student, Department of Mathematical and Computing Science, School of Computing, Institute of Science Tokyo<!-- 【要確認】year -->
+      · <a href="https://www.ac2.scrc.iir.isct.ac.jp/" target="_blank" rel="noopener">Advanced Computing ACceleration (AC2) Laboratory</a> (Advisor: Assoc. Prof. Ryohei Kobayashi)
     </div>
   </div>
 </header>
 
 <nav>
-  <a href="#research">研究</a>
-  <a href="#publications">発表業績</a>
-  <a href="#education">経歴</a>
-  <a href="#contact">連絡先</a>
+  <a href="#research">Research</a>
+  <a href="#publications">Publications</a>
+  <a href="#education">Education</a>
+  <a href="#contact">Contact</a>
 </nav>
 
-<h2 id="about">自己紹介</h2>
+<h2 id="about">About</h2>
 <p>
-高性能計算（HPC）とシステムソフトウェアの研究をしています。現在は、NVIDIA BlueField-3 などの
-DPU（Data Processing Unit）を用いて、分散学習のノード間通信を圧縮によって削減できる条件を、
-実測に基づいて明らかにする研究に取り組んでいます。
+I work on high-performance computing (HPC) and systems software. My current research asks,
+with real measurements, under what conditions Data Processing Units (DPUs) such as the
+NVIDIA BlueField-3 can reduce inter-node communication in distributed training through compression.
 </p>
 
-<h2 id="research">研究</h2>
+<h2 id="research">Research</h2>
 
 <div class="item">
-  <h3>DPU 上の通信圧縮の特性評価（分散学習向け）</h3>
+  <h3>Characterizing communication compression on DPUs for distributed training</h3>
   <p>
-    NVIDIA BlueField-3 DPU の Arm コア上に NetZIP 型の可逆圧縮パイプライン
-    （バイトグループ化＋LZ4、16コア並列、チャンク単位の圧縮・転送オーバーラップ）を実装し、
-    同一 RDMA 経路の無圧縮通信と end-to-end で公平に比較。無圧縮ベースラインが
-    RDMA バッファのページ構成で大きく変わること（4 KiB: 10.9 GB/s / THP: 24.6 GB/s）、
-    送信側処理が約 9 GB/s で律速となり専用ハードなしでは無圧縮を上回れないことを定量化し、
-    設計指針を提示しました。
+    Implemented a NetZIP-style lossless pipeline (byte grouping + LZ4, 16-core parallelism,
+    chunk-level compression/transfer overlap) on the Arm cores of an NVIDIA BlueField-3 DPU,
+    and compared it end-to-end against uncompressed transfer on the same RDMA path.
+    Quantified that the uncompressed baseline shifts with RDMA-buffer page backing
+    (4 KiB: 10.9 GB/s vs. THP: 24.6 GB/s), and that sender-side processing saturates at
+    about 9 GB/s — so without dedicated hardware the compressed path does not beat
+    uncompressed RDMA — yielding concrete design implications.
   </p>
-  <p class="meta"><span class="tag">DPU</span><span class="tag">RDMA</span><span class="tag">可逆圧縮</span><span class="tag">分散学習</span></p>
+  <p class="meta"><span class="tag">DPU</span><span class="tag">RDMA</span><span class="tag">lossless compression</span><span class="tag">distributed training</span></p>
 </div>
 
 <div class="item">
-  <h3>研究の関心</h3>
+  <h3>Research interests</h3>
   <ul>
-    <li>HPC ネットワーク・インターコネクト（RDMA / InfiniBand）</li>
-    <li>DPU・SmartNIC によるオフロードとシステム設計</li>
-    <li>分散学習システムの通信最適化（圧縮・オーバーラップ・適応制御）</li>
+    <li>HPC networking and interconnects (RDMA / InfiniBand)</li>
+    <li>Offloading and system design with DPUs / SmartNICs</li>
+    <li>Communication optimization for distributed training (compression, overlap, adaptive control)</li>
   </ul>
 </div>
 
-<h2 id="publications">発表業績</h2>
+<h2 id="publications">Publications</h2>
 
-<h3>国際会議・ワークショップ（査読あり）</h3>
+<h3>International (refereed)</h3>
 <ul>
   <li>
     <strong>Taiga Kobayashi</strong>, Tomohiro Ueno, Ryohei Kobayashi,
     “Characterizing Communication Compression on NVIDIA BlueField-3 DPU for Distributed Training,”
     <em>Workshop Proceedings of the 55th International Conference on Parallel Processing (ICPP Workshops ’26), SPIN-NVSC Workshop</em>,
-    Singapore, Sep. 2026（発表予定）.
+    Singapore, Sep. 2026 (to appear).
     <a href="https://doi.org/10.1145/3816891.3834898" target="_blank" rel="noopener">DOI</a>
   </li>
 </ul>
 
-<h3>国内研究会</h3>
+<h3>Domestic (Japan)</h3>
 <ul>
   <li>
-    小林 泰雅, 上野 知洋, 小林 諒平,
-    「分散学習に向けた NVIDIA BlueField-3 DPU 上の通信圧縮の特性評価」,
-    情報処理学会 研究報告（SWoPP 2026, HPC研究会）, 2026年8月.
+    Taiga Kobayashi, Tomohiro Ueno, Ryohei Kobayashi,
+    “Characterization of communication compression on NVIDIA BlueField-3 DPU for distributed training” (in Japanese),
+    IPSJ SIG Technical Report (SWoPP 2026, SIG-HPC), Aug. 2026.
   </li>
 </ul>
 
-<h3>ポスター発表</h3>
+<h3>Posters</h3>
 <ul>
   <li>
-    小林 泰雅,「分散学習に向けた NVIDIA BlueField-3 DPU 上の通信圧縮の特性評価」,
-    コンピュータ・システム・アーキテクチャ サマーワークショップ 2026, 福岡, 2026年9月（発表予定）.
+    Taiga Kobayashi, poster on BF3 communication-compression characterization,
+    Computer System &amp; Architecture Summer Workshop 2026, Fukuoka, Japan, Sep. 2026 (to be presented).
   </li>
   <li>
-    小林 泰雅,「NVIDIA BlueField DPU を活用した適応型帯域圧縮手法の初期検討」,
-    コンピュータ・システム・アーキテクチャ サマーワークショップ 2025, 2025年9月.
+    Taiga Kobayashi, “Initial study of adaptive bandwidth compression using NVIDIA BlueField DPUs” (in Japanese),
+    Computer System &amp; Architecture Summer Workshop 2025, Sep. 2025.
   </li>
 </ul>
 
-<h2 id="education">経歴</h2>
+<h2 id="education">Education</h2>
 <ul>
-  <li>20XX年4月 – 現在：東京科学大学 情報理工学院 数理・計算科学系 修士課程 <span class="note">【要記入】</span></li>
-  <li>20XX年3月：〇〇大学 〇〇学部 卒業 <span class="note">【要記入】</span></li>
+  <li>Apr. 20XX – present: M.Sc. student, Institute of Science Tokyo <span class="note">[fill in]</span></li>
+  <li>Mar. 20XX: B.Sc., XXXX University <span class="note">[fill in]</span></li>
 </ul>
 
-<!-- 受賞があれば有効化
-<h2 id="awards">受賞</h2>
-<ul>
-  <li>20XX年：〇〇賞</li>
-</ul>
+<!-- Awards (enable if any)
+<h2 id="awards">Awards</h2>
+<ul><li>20XX: ...</li></ul>
 -->
 
-<h2 id="contact">連絡先</h2>
+<h2 id="contact">Contact</h2>
 <ul>
   <li>Email: <a href="mailto:taiga5884@ac2.scrc.iir.isct.ac.jp">taiga5884@ac2.scrc.iir.isct.ac.jp</a></li>
-  <li>GitHub: <span class="note">【要記入】アカウントURL</span></li>
+  <li>GitHub: <span class="note">[fill in account URL]</span></li>
 </ul>
 
 <footer>© 2026 Taiga Kobayashi — Tokyo, Japan</footer>
