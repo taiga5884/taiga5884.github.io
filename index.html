@@ -44,13 +44,12 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--line);color:v
 <div class="lang"><a href="ja/">日本語</a></div>
 
 <header>
-  <!-- To use a photo: replace with <img class="avatar" src="assets/photo.jpg" alt="Taiga Kobayashi"> -->
-  <div class="avatar">TK</div>
+  <img class="avatar" src="assets/photo.jpg" alt="Taiga Kobayashi" style="object-fit:cover">
   <div>
     <h1>Taiga Kobayashi</h1>
     <div class="en-name">小林 泰雅</div>
     <div class="affil">
-      Master's student, Department of Mathematical and Computing Science, School of Computing, Institute of Science Tokyo<!-- 【要確認】year -->
+      Master's student, Department of Mathematical and Computing Science, School of Computing, Institute of Science Tokyo
       · <a href="https://www.ac2.scrc.iir.isct.ac.jp/" target="_blank" rel="noopener">Advanced Computing ACceleration (AC2) Laboratory</a> (Advisor: Assoc. Prof. Ryohei Kobayashi)
     </div>
   </div>
@@ -65,9 +64,10 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--line);color:v
 
 <h2 id="about">About</h2>
 <p>
-I work on high-performance computing (HPC) and systems software. My current research asks,
-with real measurements, under what conditions Data Processing Units (DPUs) such as the
-NVIDIA BlueField-3 can reduce inter-node communication in distributed training through compression.
+I work on communication optimization for large-scale systems, with interests in FPGAs, DPUs,
+machine learning, and data compression. My current work studies communication-data compression
+on NVIDIA BlueField DPUs for multi-GPU LLM training, with an eye toward communication substrates
+for future sparse and irregular accelerator workloads.
 </p>
 
 <h2 id="research">Research</h2>
@@ -88,11 +88,7 @@ NVIDIA BlueField-3 can reduce inter-node communication in distributed training t
 
 <div class="item">
   <h3>Research interests</h3>
-  <ul>
-    <li>HPC networking and interconnects (RDMA / InfiniBand)</li>
-    <li>Offloading and system design with DPUs / SmartNICs</li>
-    <li>Communication optimization for distributed training (compression, overlap, adaptive control)</li>
-  </ul>
+  <p>FPGA / DPU / Machine Learning / Data Compression</p>
 </div>
 
 <h2 id="publications">Publications</h2>
@@ -131,8 +127,8 @@ NVIDIA BlueField-3 can reduce inter-node communication in distributed training t
 
 <h2 id="education">Education</h2>
 <ul>
-  <li>Apr. 20XX – present: M.Sc. student, Institute of Science Tokyo <span class="note">[fill in]</span></li>
-  <li>Mar. 20XX: B.Sc., XXXX University <span class="note">[fill in]</span></li>
+  <li>Apr. 2026 – present: Master's program, Department of Mathematical and Computing Science, School of Computing, Institute of Science Tokyo (expected Mar. 2028)</li>
+  <li>Apr. 2022 – Mar. 2026: Bachelor's degree, Institute of Science Tokyo</li>
 </ul>
 
 <!-- Awards (enable if any)
@@ -143,7 +139,7 @@ NVIDIA BlueField-3 can reduce inter-node communication in distributed training t
 <h2 id="contact">Contact</h2>
 <ul>
   <li>Email: <a href="mailto:taiga5884@ac2.scrc.iir.isct.ac.jp">taiga5884@ac2.scrc.iir.isct.ac.jp</a></li>
-  <li>GitHub: <span class="note">[fill in account URL]</span></li>
+  <li>GitHub: <a href="https://github.com/taiga5884" target="_blank" rel="noopener">github.com/taiga5884</a></li>
 </ul>
 
 <footer>© 2026 Taiga Kobayashi — Tokyo, Japan</footer>

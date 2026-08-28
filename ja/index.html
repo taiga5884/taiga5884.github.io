@@ -44,13 +44,12 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--line);color:v
 <div class="lang"><a href="../">English</a></div>
 
 <header>
-  <!-- 写真を使う場合: <img class="avatar" src="../assets/photo.jpg" alt="小林泰雅"> に差し替え -->
-  <div class="avatar">TK</div>
+  <img class="avatar" src="../assets/photo.jpg" alt="小林泰雅" style="object-fit:cover">
   <div>
     <h1>小林 泰雅</h1>
     <div class="en-name">Taiga Kobayashi</div>
     <div class="affil">
-      東京科学大学 情報理工学院 数理・計算科学系 修士課程<!-- 【要確認】学年 -->
+      東京科学大学 情報理工学院 数理・計算科学系 修士課程
       ・<a href="https://www.ac2.scrc.iir.isct.ac.jp/" target="_blank" rel="noopener">Advanced Computing ACceleration (AC2) Laboratory</a>（指導教員：小林 諒平 准教授）
     </div>
   </div>
@@ -65,9 +64,9 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--line);color:v
 
 <h2 id="about">自己紹介</h2>
 <p>
-高性能計算（HPC）とシステムソフトウェアの研究をしています。現在は、NVIDIA BlueField-3 などの
-DPU（Data Processing Unit）を用いて、分散学習のノード間通信を圧縮によって削減できる条件を、
-実測に基づいて明らかにする研究に取り組んでいます。
+大規模システムの通信最適化を研究しています。FPGA・DPU・機械学習・データ圧縮に関心があります。
+現在は、マルチGPUでのLLM学習を対象に NVIDIA BlueField DPU 上での通信データ圧縮を研究しており、
+将来の疎・不規則なアクセラレータワークロードに向けた通信基盤を見据えています。
 </p>
 
 <h2 id="research">研究</h2>
@@ -87,11 +86,7 @@ DPU（Data Processing Unit）を用いて、分散学習のノード間通信を
 
 <div class="item">
   <h3>研究の関心</h3>
-  <ul>
-    <li>HPC ネットワーク・インターコネクト（RDMA / InfiniBand）</li>
-    <li>DPU・SmartNIC によるオフロードとシステム設計</li>
-    <li>分散学習システムの通信最適化（圧縮・オーバーラップ・適応制御）</li>
-  </ul>
+  <p>FPGA ／ DPU ／ 機械学習 ／ データ圧縮</p>
 </div>
 
 <h2 id="publications">発表業績</h2>
@@ -130,8 +125,8 @@ DPU（Data Processing Unit）を用いて、分散学習のノード間通信を
 
 <h2 id="education">経歴</h2>
 <ul>
-  <li>20XX年4月 – 現在：東京科学大学 情報理工学院 数理・計算科学系 修士課程 <span class="note">【要記入】</span></li>
-  <li>20XX年3月：〇〇大学 〇〇学部 卒業 <span class="note">【要記入】</span></li>
+  <li>2026年4月 – 現在：東京科学大学 情報理工学院 数理・計算科学系 修士課程（2028年3月修了予定）</li>
+  <li>2022年4月 – 2026年3月：東京科学大学 学士課程 卒業</li>
 </ul>
 
 <!-- 受賞があれば有効化
@@ -144,7 +139,7 @@ DPU（Data Processing Unit）を用いて、分散学習のノード間通信を
 <h2 id="contact">連絡先</h2>
 <ul>
   <li>Email: <a href="mailto:taiga5884@ac2.scrc.iir.isct.ac.jp">taiga5884@ac2.scrc.iir.isct.ac.jp</a></li>
-  <li>GitHub: <span class="note">【要記入】アカウントURL</span></li>
+  <li>GitHub: <a href="https://github.com/taiga5884" target="_blank" rel="noopener">github.com/taiga5884</a></li>
 </ul>
 
 <footer>© 2026 Taiga Kobayashi — Tokyo, Japan</footer>
