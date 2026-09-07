@@ -5,74 +5,152 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>小林 泰雅 | Taiga Kobayashi</title>
 <meta name="description" content="小林泰雅のポートフォリオ。東京科学大学 AC2研究室。DPU・HPCネットワーク・分散学習の通信圧縮の研究。">
+<meta property="og:title" content="小林 泰雅 | Taiga Kobayashi">
+<meta property="og:description" content="大規模システムの通信最適化を研究。FPGA・DPU・機械学習・データ圧縮。">
+<meta property="og:image" content="https://taiga5884.github.io/assets/photo.jpg">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
 :root{
-  --text:#1f2430; --sub:#5a6472; --accent:#1155cc; --line:#e4e8ee; --bg:#ffffff; --chip:#f2f5fa;
+  --text:#16181d; --sub:#61697a; --accent:#1155cc; --accent-soft:#e8effc;
+  --line:#e5e8ee; --bg:#ffffff; --chip:#f4f6fa;
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);
-  font-family:"Helvetica Neue",Arial,"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",Meiryo,sans-serif;
-  line-height:1.85;font-size:16px}
-.wrap{max-width:760px;margin:0 auto;padding:48px 24px 64px}
-a{color:var(--accent);text-decoration:none}
-a:hover{text-decoration:underline}
-.lang{text-align:right;font-size:14px;margin-bottom:8px}
-header{display:flex;gap:24px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
-.avatar{width:104px;height:auto;border-radius:6px;border:1px solid var(--line);flex:none}
-h1{font-size:26px;margin:0 0 2px}
-.en-name{color:var(--sub);font-size:15px}
-.affil{color:var(--sub);font-size:14.5px;margin-top:6px}
-nav{margin:20px 0 8px;padding:10px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-  font-size:14.5px;display:flex;gap:20px;flex-wrap:wrap}
-h2{font-size:19px;margin:44px 0 12px;padding-bottom:6px;border-bottom:2px solid var(--line)}
-h3{font-size:16px;margin:22px 0 6px}
-p{margin:10px 0}
-ul{padding-left:1.3em;margin:8px 0}
-li{margin:6px 0}
-.item{margin:18px 0}
-.item .meta{color:var(--sub);font-size:14px}
-.tag{display:inline-block;background:var(--chip);border:1px solid var(--line);border-radius:5px;
-  font-size:12.5px;padding:1px 8px;margin-right:6px;color:var(--sub)}
-.note{color:var(--sub);font-size:13.5px}
-footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--line);color:var(--sub);font-size:13.5px}
-
-/* ===== 追加UI: トップバー / ドロワー目次 ===== */
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
-h2{scroll-margin-top:76px}
-.topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
-  border-bottom:1px solid var(--line);display:flex;align-items:center;gap:14px;padding:10px 18px}
-.tb-name{font-weight:700;font-size:15px;color:var(--text)}
+body{margin:0;background:var(--bg);color:var(--text);
+  font-family:"Inter","Noto Sans JP","Hiragino Kaku Gothic ProN","Hiragino Sans",Meiryo,sans-serif;
+  line-height:1.9;font-size:16px;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+img{max-width:100%}
+.wrap{max-width:880px;margin:0 auto;padding:0 28px}
+
+/* ===== トップバー ===== */
+.topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.85);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  border-bottom:1px solid transparent;transition:border-color .3s;
+  display:flex;align-items:center;gap:14px;padding:12px 20px}
+.topbar.scrolled{border-bottom-color:var(--line)}
+.tb-name{font-weight:700;font-size:14.5px;letter-spacing:.02em}
 .tb-spacer{flex:1}
-.tb-lang{font-size:14px}
-.hamburger{width:40px;height:40px;border:1px solid var(--line);border-radius:8px;background:#fff;
+.tb-lang{font-size:13.5px;border:1px solid var(--line);border-radius:999px;padding:5px 14px}
+.tb-lang:hover{background:var(--chip);text-decoration:none}
+.hamburger{width:40px;height:40px;border:1px solid var(--line);border-radius:10px;background:#fff;
   cursor:pointer;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;padding:0;flex:none}
 .hamburger:hover{background:var(--chip)}
-.hamburger span{display:block;width:18px;height:2px;background:var(--text);border-radius:1px;transition:transform .25s ease,opacity .25s ease}
+.hamburger span{display:block;width:17px;height:2px;background:var(--text);border-radius:1px;transition:transform .25s ease,opacity .25s ease}
 .hamburger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .hamburger[aria-expanded="true"] span:nth-child(2){opacity:0}
 .hamburger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-.drawer{position:fixed;top:0;left:0;bottom:0;width:272px;max-width:82vw;background:#fff;z-index:70;
-  transform:translateX(-100%);transition:transform .28s ease;border-right:1px solid var(--line);
-  padding:18px 0;overflow-y:auto;box-shadow:0 0 28px rgba(0,0,0,.10)}
+
+/* ===== ドロワー目次 ===== */
+.drawer{position:fixed;top:0;left:0;bottom:0;width:280px;max-width:84vw;background:#fff;z-index:70;
+  transform:translateX(-100%);transition:transform .3s cubic-bezier(.22,.9,.35,1);
+  border-right:1px solid var(--line);padding:22px 0;overflow-y:auto;box-shadow:0 0 32px rgba(0,0,0,.10)}
 .drawer.open{transform:translateX(0)}
-.drawer-title{font-size:13px;font-weight:700;color:var(--sub);letter-spacing:.08em;padding:6px 22px 10px;
-  border-bottom:1px solid var(--line);margin-bottom:8px}
-.drawer a{display:block;padding:11px 22px;color:var(--text);font-size:15px;border-left:3px solid transparent}
+.drawer-title{font-family:"Inter",sans-serif;font-size:11px;font-weight:800;color:var(--sub);
+  letter-spacing:.22em;padding:6px 24px 12px;border-bottom:1px solid var(--line);margin-bottom:10px}
+.drawer a{display:flex;align-items:baseline;gap:12px;padding:12px 24px;color:var(--text);font-size:15px;border-left:3px solid transparent}
+.drawer a .no{font-family:"Inter",sans-serif;font-size:11px;font-weight:800;color:var(--sub);letter-spacing:.08em}
 .drawer a:hover{background:var(--chip);text-decoration:none}
-.drawer a.active{border-left-color:var(--accent);color:var(--accent);font-weight:700;background:var(--chip)}
-.drawer-sep{border-top:1px solid var(--line);margin:10px 0}
-.backdrop{position:fixed;inset:0;background:rgba(15,23,42,.35);z-index:60;opacity:0;pointer-events:none;transition:opacity .28s ease}
+.drawer a.active{border-left-color:var(--accent);color:var(--accent);font-weight:700;background:var(--accent-soft)}
+.drawer a.active .no{color:var(--accent)}
+.drawer-sep{border-top:1px solid var(--line);margin:12px 0}
+.backdrop{position:fixed;inset:0;background:rgba(15,23,42,.4);z-index:60;opacity:0;pointer-events:none;transition:opacity .3s}
 .backdrop.show{opacity:1;pointer-events:auto}
-.totop{position:fixed;right:22px;bottom:22px;z-index:40;width:42px;height:42px;border-radius:50%;
+
+/* ===== ヒーロー ===== */
+.hero{min-height:calc(88vh - 64px);display:flex;align-items:center;padding:56px 0 40px;position:relative}
+.hero-grid{display:flex;gap:48px;align-items:center;flex-wrap:wrap}
+.hero-main{flex:1 1 380px;min-width:300px}
+.kicker{font-family:"Inter",sans-serif;font-size:12px;font-weight:800;letter-spacing:.24em;color:var(--accent);margin-bottom:18px}
+h1{font-size:clamp(38px,6vw,56px);font-weight:900;letter-spacing:.01em;line-height:1.25;margin:0 0 6px}
+.hero-en{font-family:"Inter",sans-serif;font-size:15px;font-weight:600;color:var(--sub);letter-spacing:.14em;margin-bottom:22px}
+.affil{color:var(--sub);font-size:14.5px;line-height:2.0;margin-bottom:20px}
+.lablogo{height:24px;vertical-align:-6px;margin:0 3px 0 1px}
+.hero-bio{font-size:15.5px;color:var(--text);max-width:56ch;margin-bottom:30px}
+.btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-block;padding:12px 26px;border-radius:999px;font-size:14.5px;font-weight:700;
+  transition:transform .2s,box-shadow .2s}
+.btn:hover{text-decoration:none;transform:translateY(-2px)}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 4px 14px rgba(17,85,204,.3)}
+.btn-primary:hover{box-shadow:0 8px 20px rgba(17,85,204,.35)}
+.btn-ghost{border:1.5px solid var(--line);color:var(--text)}
+.btn-ghost:hover{background:var(--chip)}
+.hero-photo{flex:0 0 auto}
+.hero-photo img{width:min(250px,58vw);border-radius:18px;border:1px solid var(--line);
+  box-shadow:0 18px 44px rgba(22,24,29,.14);display:block}
+.scroll-cue{position:absolute;left:50%;bottom:8px;transform:translateX(-50%);
+  color:var(--sub);font-family:"Inter",sans-serif;font-size:10px;font-weight:700;letter-spacing:.3em;
+  display:flex;flex-direction:column;align-items:center;gap:8px}
+.scroll-cue::after{content:"";width:1px;height:38px;background:linear-gradient(var(--sub),transparent);
+  animation:cue 1.8s ease-in-out infinite}
+@keyframes cue{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+@media (prefers-reduced-motion: reduce){.scroll-cue::after{animation:none}}
+
+/* ===== セクション ===== */
+section{padding:72px 0 8px}
+h2{scroll-margin-top:76px;display:flex;align-items:baseline;gap:16px;
+  font-size:26px;font-weight:900;letter-spacing:.02em;margin:0 0 30px}
+h2 .no{font-family:"Inter",sans-serif;font-size:13px;font-weight:800;color:var(--accent);letter-spacing:.2em}
+h2::after{content:"";flex:1;height:1px;background:var(--line)}
+h3{font-size:16.5px;font-weight:700;margin:26px 0 8px}
+p{margin:10px 0}
+ul{padding-left:1.3em;margin:8px 0}
+li{margin:8px 0}
+.note{color:var(--sub);font-size:13.5px}
+
+/* 研究カード */
+.card{border:1px solid var(--line);border-radius:16px;padding:26px 28px;margin:18px 0;
+  transition:transform .25s,box-shadow .25s;background:#fff}
+.card:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(22,24,29,.08)}
+.card h3{margin-top:0}
+.tag{display:inline-block;background:var(--accent-soft);color:var(--accent);border-radius:999px;
+  font-size:12px;font-weight:700;padding:3px 12px;margin:10px 8px 0 0}
+.interests{color:var(--sub);font-size:15px}
+
+/* 業績 */
+.pub{border-left:3px solid var(--accent);background:var(--chip);border-radius:0 12px 12px 0;
+  padding:16px 22px;margin:14px 0;font-size:15px}
+.pub .venue{display:inline-block;font-family:"Inter",sans-serif;font-size:11px;font-weight:800;
+  letter-spacing:.1em;color:var(--accent);margin-bottom:4px}
+.pub a{font-weight:700}
+
+/* 経歴タイムライン */
+.timeline{list-style:none;padding:0;margin:6px 0 0;position:relative}
+.timeline::before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:var(--line)}
+.timeline li{position:relative;padding:0 0 22px 34px;margin:0}
+.timeline li::before{content:"";position:absolute;left:0;top:9px;width:12px;height:12px;border-radius:50%;
+  background:#fff;border:3px solid var(--accent)}
+.timeline .when{font-family:"Inter",sans-serif;font-size:12.5px;font-weight:800;color:var(--accent);letter-spacing:.05em}
+.timeline .what{font-size:15px}
+
+/* 連絡先 */
+.contact-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px}
+.pill{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--line);border-radius:999px;
+  padding:11px 22px;font-size:14.5px;font-weight:600;color:var(--text);transition:transform .2s,border-color .2s}
+.pill:hover{text-decoration:none;transform:translateY(-2px);border-color:var(--accent);color:var(--accent)}
+
+/* スクロール出現 */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+.totop{position:fixed;right:22px;bottom:22px;z-index:40;width:44px;height:44px;border-radius:50%;
   border:1px solid var(--line);background:#fff;color:var(--accent);font-size:18px;cursor:pointer;
-  box-shadow:0 2px 10px rgba(0,0,0,.10);opacity:0;pointer-events:none;transition:opacity .25s}
+  box-shadow:0 2px 12px rgba(0,0,0,.12);opacity:0;pointer-events:none;transition:opacity .25s,transform .2s}
+.totop:hover{transform:translateY(-2px)}
 .totop.show{opacity:1;pointer-events:auto}
-.lablogo{height:26px;vertical-align:-7px;margin:0 3px 0 1px}
+
+footer{margin:80px 0 0;padding:26px 0 34px;border-top:1px solid var(--line);color:var(--sub);font-size:13px}
 </style>
 </head>
 <body>
-<div class="topbar">
+
+<div class="topbar" id="topbar">
   <button class="hamburger" id="menuBtn" aria-label="目次を開く" aria-expanded="false" aria-controls="drawer">
     <span></span><span></span><span></span>
   </button>
@@ -80,13 +158,14 @@ h2{scroll-margin-top:76px}
   <div class="tb-spacer"></div>
   <a class="tb-lang" href="en/">English</a>
 </div>
+
 <aside class="drawer" id="drawer" aria-label="目次">
-  <div class="drawer-title">目次</div>
-  <a href="#about">自己紹介</a>
-  <a href="#research">研究</a>
-  <a href="#publications">発表業績</a>
-  <a href="#education">経歴</a>
-  <a href="#contact">連絡先</a>
+  <div class="drawer-title">CONTENTS</div>
+  <a href="#about"><span class="no">00</span>自己紹介</a>
+  <a href="#research"><span class="no">01</span>研究</a>
+  <a href="#publications"><span class="no">02</span>発表業績</a>
+  <a href="#education"><span class="no">03</span>経歴</a>
+  <a href="#contact"><span class="no">04</span>連絡先</a>
   <div class="drawer-sep"></div>
   <a href="en/">English</a>
 </aside>
@@ -95,99 +174,117 @@ h2{scroll-margin-top:76px}
 
 <div class="wrap">
 
-<header>
-  <img class="avatar" src="assets/photo.jpg" alt="小林泰雅">
-  <div>
-    <h1>小林 泰雅</h1>
-    <div class="en-name">Taiga Kobayashi</div>
-    <div class="affil">
-      東京科学大学 情報理工学院 数理・計算科学系 修士課程
-      ・<a href="https://www.ac2.scrc.iir.isct.ac.jp/" target="_blank" rel="noopener"><img class="lablogo" src="assets/ac2_logo.png" alt="AC2 Laboratory"></a><a href="https://www.ac2.scrc.iir.isct.ac.jp/" target="_blank" rel="noopener">Advanced Computing ACceleration (AC2) Laboratory</a>（主宰：<a href="https://sites.google.com/site/ryokbya/home-japanese" target="_blank" rel="noopener">小林 諒平 准教授</a>）
+<!-- ヒーロー（ファーストビュー） -->
+<header class="hero" id="about">
+  <div class="hero-grid">
+    <div class="hero-main">
+      <div class="kicker">HPC × DPU × DATA COMPRESSION</div>
+      <h1>小林 泰雅</h1>
+      <div class="hero-en">TAIGA KOBAYASHI</div>
+      <div class="affil">
+        東京科学大学 情報理工学院 数理・計算科学系 修士課程<br>
+        <a href="https://www.ac2.scrc.iir.isct.ac.jp/" target="_blank" rel="noopener"><img class="lablogo" src="assets/ac2_logo.png" alt="AC2 Laboratory"></a><a href="https://www.ac2.scrc.iir.isct.ac.jp/" target="_blank" rel="noopener">Advanced Computing ACceleration (AC2) Laboratory</a>（主宰：<a href="https://sites.google.com/site/ryokbya/home-japanese" target="_blank" rel="noopener">小林 諒平 准教授</a>）
+      </div>
+      <p class="hero-bio">
+        大規模システムの通信最適化を研究しています。FPGA・DPU・機械学習・データ圧縮に関心があります。
+        現在は、マルチGPUでのLLM学習を対象に NVIDIA BlueField DPU 上での通信データ圧縮を研究しており、
+        将来の疎・不規則なアクセラレータワークロードに向けた通信基盤を見据えています。
+      </p>
+      <div class="btns">
+        <a class="btn btn-primary" href="#research">研究を見る</a>
+        <a class="btn btn-ghost" href="#contact">連絡先</a>
+      </div>
+    </div>
+    <div class="hero-photo reveal">
+      <img src="assets/photo.jpg" alt="小林泰雅">
     </div>
   </div>
+  <div class="scroll-cue">SCROLL</div>
 </header>
 
-<h2 id="about">自己紹介</h2>
-<p>
-大規模システムの通信最適化を研究しています。FPGA・DPU・機械学習・データ圧縮に関心があります。
-現在は、マルチGPUでのLLM学習を対象に NVIDIA BlueField DPU 上での通信データ圧縮を研究しており、
-将来の疎・不規則なアクセラレータワークロードに向けた通信基盤を見据えています。
-</p>
+<!-- 研究 -->
+<section id="research-sec">
+  <h2 id="research"><span class="no">01</span>研究</h2>
+  <div class="card reveal">
+    <h3>DPU 上の通信圧縮の特性評価（分散学習向け）</h3>
+    <p>
+      NVIDIA BlueField-3 DPU の Arm コア上に NetZIP 型の可逆圧縮パイプライン
+      （バイトグループ化＋LZ4、16コア並列、チャンク単位の圧縮・転送オーバーラップ）を実装し、
+      同一 RDMA 経路の無圧縮通信と end-to-end で公平に比較。無圧縮ベースラインが
+      RDMA バッファのページ構成で大きく変わること（4 KiB: 10.9 GB/s / THP: 24.6 GB/s）、
+      送信側処理が約 9 GB/s で律速となり専用ハードなしでは無圧縮を上回れないことを定量化し、
+      設計指針を提示しました。
+    </p>
+    <span class="tag">DPU</span><span class="tag">RDMA</span><span class="tag">可逆圧縮</span><span class="tag">分散学習</span>
+  </div>
+  <div class="reveal">
+    <h3>研究の関心</h3>
+    <p class="interests">FPGA ／ DPU ／ 機械学習 ／ データ圧縮</p>
+  </div>
+</section>
 
-<h2 id="research">研究</h2>
-
-<div class="item">
-  <h3>DPU 上の通信圧縮の特性評価（分散学習向け）</h3>
-  <p>
-    NVIDIA BlueField-3 DPU の Arm コア上に NetZIP 型の可逆圧縮パイプライン
-    （バイトグループ化＋LZ4、16コア並列、チャンク単位の圧縮・転送オーバーラップ）を実装し、
-    同一 RDMA 経路の無圧縮通信と end-to-end で公平に比較。無圧縮ベースラインが
-    RDMA バッファのページ構成で大きく変わること（4 KiB: 10.9 GB/s / THP: 24.6 GB/s）、
-    送信側処理が約 9 GB/s で律速となり専用ハードなしでは無圧縮を上回れないことを定量化し、
-    設計指針を提示しました。
-  </p>
-  <p class="meta"><span class="tag">DPU</span><span class="tag">RDMA</span><span class="tag">可逆圧縮</span><span class="tag">分散学習</span></p>
-</div>
-
-<div class="item">
-  <h3>研究の関心</h3>
-  <p>FPGA ／ DPU ／ 機械学習 ／ データ圧縮</p>
-</div>
-
-<h2 id="publications">発表業績</h2>
-
-<h3>国際会議・ワークショップ（査読あり）</h3>
-<ul>
-  <li>
+<!-- 発表業績 -->
+<section id="publications-sec">
+  <h2 id="publications"><span class="no">02</span>発表業績</h2>
+  <div class="pub reveal">
+    <span class="venue">国際会議・ワークショップ（査読あり）</span><br>
     <strong>Taiga Kobayashi</strong>, Tomohiro Ueno, Ryohei Kobayashi,
     “Characterizing Communication Compression on NVIDIA BlueField-3 DPU for Distributed Training,”
     <em>Workshop Proceedings of the 55th International Conference on Parallel Processing (ICPP Workshops ’26), SPIN-NVSC Workshop</em>,
     Singapore, Sep. 2026（発表予定）.
     <a href="https://doi.org/10.1145/3816891.3834898" target="_blank" rel="noopener">DOI</a>
-  </li>
-</ul>
-
-<h3>国内研究会</h3>
-<ul>
-  <li>
+  </div>
+  <div class="pub reveal">
+    <span class="venue">国内研究会</span><br>
     小林 泰雅, 上野 知洋, 小林 諒平,
     「分散学習に向けた NVIDIA BlueField-3 DPU 上の通信圧縮の特性評価」,
     情報処理学会 研究報告（SWoPP 2026, HPC研究会）, 2026年7月.
     <a href="https://ipsj.ixsq.nii.ac.jp/records/2010661" target="_blank" rel="noopener">情報学広場</a>
-  </li>
-</ul>
+  </div>
+</section>
 
-<h2 id="education">経歴</h2>
-<ul>
-  <li>2022年4月：東京科学大学 学士課程 入学</li>
-  <li>2026年3月：東京科学大学 学士課程 卒業</li>
-  <li>2026年4月 – 現在：東京科学大学 情報理工学院 数理・計算科学系 修士課程（2028年3月修了予定）, リサーチアシスタント（RA）・JST ASPIRE 採択課題「<a href="https://www.jst.go.jp/aspire/program/assignment/index.html" target="_blank" rel="noopener">次世代の高効率計算基盤を実現する適応型データ圧縮ハードウェアの探求</a>」（研究代表者：上野 知洋・理化学研究所 計算科学研究センター）</li>
-</ul>
+<!-- 経歴 -->
+<section id="education-sec">
+  <h2 id="education"><span class="no">03</span>経歴</h2>
+  <ul class="timeline">
+    <li class="reveal">
+      <div class="when">2022年4月</div>
+      <div class="what">東京科学大学 学士課程 入学</div>
+    </li>
+    <li class="reveal">
+      <div class="when">2026年3月</div>
+      <div class="what">東京科学大学 学士課程 卒業</div>
+    </li>
+    <li class="reveal">
+      <div class="when">2026年4月 – 現在</div>
+      <div class="what">東京科学大学 情報理工学院 数理・計算科学系 修士課程（2028年3月修了予定）,
+        リサーチアシスタント（RA）・JST ASPIRE 採択課題「<a href="https://www.jst.go.jp/aspire/program/assignment/index.html" target="_blank" rel="noopener">次世代の高効率計算基盤を実現する適応型データ圧縮ハードウェアの探求</a>」（研究代表者：上野 知洋・理化学研究所 計算科学研究センター）</div>
+    </li>
+  </ul>
+</section>
 
-<!-- 受賞があれば有効化
-<h2 id="awards">受賞</h2>
-<ul>
-  <li>20XX年：〇〇賞</li>
-</ul>
--->
-
-<h2 id="contact">連絡先</h2>
-<ul>
-  <li>Email: <a href="mailto:taiga5884@ac2.scrc.iir.isct.ac.jp">taiga5884@ac2.scrc.iir.isct.ac.jp</a></li>
-  <li>GitHub: <a href="https://github.com/taiga5884" target="_blank" rel="noopener">github.com/taiga5884</a></li>
-  <li>LinkedIn: <a href="https://www.linkedin.com/in/taiga-kobayashi-924b14431/" target="_blank" rel="noopener">linkedin.com/in/taiga-kobayashi</a></li>
-  <li>ORCID: <a href="https://orcid.org/0009-0002-7779-8455" target="_blank" rel="noopener">0009-0002-7779-8455</a></li>
-</ul>
+<!-- 連絡先 -->
+<section id="contact-sec">
+  <h2 id="contact"><span class="no">04</span>連絡先</h2>
+  <div class="contact-row reveal">
+    <a class="pill" href="mailto:taiga5884@ac2.scrc.iir.isct.ac.jp">✉ Email</a>
+    <a class="pill" href="https://github.com/taiga5884" target="_blank" rel="noopener">GitHub</a>
+    <a class="pill" href="https://www.linkedin.com/in/taiga-kobayashi-924b14431/" target="_blank" rel="noopener">LinkedIn</a>
+    <a class="pill" href="https://orcid.org/0009-0002-7779-8455" target="_blank" rel="noopener">ORCID</a>
+  </div>
+</section>
 
 <footer>© 2026 Taiga Kobayashi — Tokyo, Japan</footer>
 
 </div>
+
 <script>
 (function () {
   var btn = document.getElementById('menuBtn');
   var drawer = document.getElementById('drawer');
   var backdrop = document.getElementById('backdrop');
   var totop = document.getElementById('totop');
+  var topbar = document.getElementById('topbar');
   function setOpen(open) {
     drawer.classList.toggle('open', open);
     backdrop.classList.toggle('show', open);
@@ -200,7 +297,7 @@ h2{scroll-margin-top:76px}
   links.forEach(function (a) { a.addEventListener('click', function () { setOpen(false); }); });
   var map = {};
   links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
-  var obs = new IntersectionObserver(function (entries) {
+  var spy = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
       if (e.isIntersecting && map[e.target.id]) {
         links.forEach(function (l) { l.classList.remove('active'); });
@@ -208,9 +305,20 @@ h2{scroll-margin-top:76px}
       }
     });
   }, { rootMargin: '-15% 0px -70% 0px' });
-  document.querySelectorAll('h2[id]').forEach(function (h) { obs.observe(h); });
+  ['about', 'research', 'publications', 'education', 'contact'].forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) spy.observe(el);
+  });
+  // スクロール出現
+  var rev = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('in'); rev.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(function (el) { rev.observe(el); });
   window.addEventListener('scroll', function () {
     totop.classList.toggle('show', window.scrollY > 500);
+    topbar.classList.toggle('scrolled', window.scrollY > 10);
   }, { passive: true });
   totop.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
 })();
