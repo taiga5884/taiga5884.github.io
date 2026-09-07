@@ -35,12 +35,64 @@ li{margin:6px 0}
   font-size:12.5px;padding:1px 8px;margin-right:6px;color:var(--sub)}
 .note{color:var(--sub);font-size:13.5px}
 footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--line);color:var(--sub);font-size:13.5px}
+
+/* ===== 追加UI: トップバー / ドロワー目次 ===== */
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+h2{scroll-margin-top:76px}
+.topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);display:flex;align-items:center;gap:14px;padding:10px 18px}
+.tb-name{font-weight:700;font-size:15px;color:var(--text)}
+.tb-spacer{flex:1}
+.tb-lang{font-size:14px}
+.hamburger{width:40px;height:40px;border:1px solid var(--line);border-radius:8px;background:#fff;
+  cursor:pointer;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;padding:0;flex:none}
+.hamburger:hover{background:var(--chip)}
+.hamburger span{display:block;width:18px;height:2px;background:var(--text);border-radius:1px;transition:transform .25s ease,opacity .25s ease}
+.hamburger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.hamburger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.drawer{position:fixed;top:0;left:0;bottom:0;width:272px;max-width:82vw;background:#fff;z-index:70;
+  transform:translateX(-100%);transition:transform .28s ease;border-right:1px solid var(--line);
+  padding:18px 0;overflow-y:auto;box-shadow:0 0 28px rgba(0,0,0,.10)}
+.drawer.open{transform:translateX(0)}
+.drawer-title{font-size:13px;font-weight:700;color:var(--sub);letter-spacing:.08em;padding:6px 22px 10px;
+  border-bottom:1px solid var(--line);margin-bottom:8px}
+.drawer a{display:block;padding:11px 22px;color:var(--text);font-size:15px;border-left:3px solid transparent}
+.drawer a:hover{background:var(--chip);text-decoration:none}
+.drawer a.active{border-left-color:var(--accent);color:var(--accent);font-weight:700;background:var(--chip)}
+.drawer-sep{border-top:1px solid var(--line);margin:10px 0}
+.backdrop{position:fixed;inset:0;background:rgba(15,23,42,.35);z-index:60;opacity:0;pointer-events:none;transition:opacity .28s ease}
+.backdrop.show{opacity:1;pointer-events:auto}
+.totop{position:fixed;right:22px;bottom:22px;z-index:40;width:42px;height:42px;border-radius:50%;
+  border:1px solid var(--line);background:#fff;color:var(--accent);font-size:18px;cursor:pointer;
+  box-shadow:0 2px 10px rgba(0,0,0,.10);opacity:0;pointer-events:none;transition:opacity .25s}
+.totop.show{opacity:1;pointer-events:auto}
 </style>
 </head>
 <body>
-<div class="wrap">
+<div class="topbar">
+  <button class="hamburger" id="menuBtn" aria-label="目次を開く" aria-expanded="false" aria-controls="drawer">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="tb-name">小林 泰雅</div>
+  <div class="tb-spacer"></div>
+  <a class="tb-lang" href="en/">English</a>
+</div>
+<aside class="drawer" id="drawer" aria-label="目次">
+  <div class="drawer-title">目次</div>
+  <a href="#about">自己紹介</a>
+  <a href="#research">研究</a>
+  <a href="#publications">発表業績</a>
+  <a href="#education">経歴</a>
+  <a href="#contact">連絡先</a>
+  <div class="drawer-sep"></div>
+  <a href="en/">English</a>
+</aside>
+<div class="backdrop" id="backdrop"></div>
+<button class="totop" id="totop" aria-label="ページ上部へ">↑</button>
 
-<div class="lang"><a href="en/">English</a></div>
+<div class="wrap">
 
 <header>
   <img class="avatar" src="assets/photo.jpg" alt="小林泰雅">
@@ -53,13 +105,6 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--line);color:v
     </div>
   </div>
 </header>
-
-<nav>
-  <a href="#research">研究</a>
-  <a href="#publications">発表業績</a>
-  <a href="#education">経歴</a>
-  <a href="#contact">連絡先</a>
-</nav>
 
 <h2 id="about">自己紹介</h2>
 <p>
@@ -136,5 +181,38 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--line);color:v
 <footer>© 2026 Taiga Kobayashi — Tokyo, Japan</footer>
 
 </div>
+<script>
+(function () {
+  var btn = document.getElementById('menuBtn');
+  var drawer = document.getElementById('drawer');
+  var backdrop = document.getElementById('backdrop');
+  var totop = document.getElementById('totop');
+  function setOpen(open) {
+    drawer.classList.toggle('open', open);
+    backdrop.classList.toggle('show', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  btn.addEventListener('click', function () { setOpen(!drawer.classList.contains('open')); });
+  backdrop.addEventListener('click', function () { setOpen(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+  var links = Array.prototype.slice.call(drawer.querySelectorAll('a[href^="#"]'));
+  links.forEach(function (a) { a.addEventListener('click', function () { setOpen(false); }); });
+  var map = {};
+  links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting && map[e.target.id]) {
+        links.forEach(function (l) { l.classList.remove('active'); });
+        map[e.target.id].classList.add('active');
+      }
+    });
+  }, { rootMargin: '-15% 0px -70% 0px' });
+  document.querySelectorAll('h2[id]').forEach(function (h) { obs.observe(h); });
+  window.addEventListener('scroll', function () {
+    totop.classList.toggle('show', window.scrollY > 500);
+  }, { passive: true });
+  totop.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+})();
+</script>
 </body>
 </html>
